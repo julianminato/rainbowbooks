@@ -1,61 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rainbow Books – Home</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<nav class="nav"><div class="container inner">
- <div class="brand"><span class="logo"></span> Rainbow Books</div>
- <div class="hstack">
-  <a href="index.html">Home</a>
-  <a href="catalog.html">Catalog</a>
-  <a href="checkout.html">Checkout <span class="badge cart-badge">0</span></a>
- </div>
-</div></nav>
-<div class="container">
-<section class="hero">
- <div class="card vstack">
-  <h1>Discover. Click & Collect. Enjoy.</h1>
-  <p class="muted">Unified ordering for stores, franchises and publishing. This prototype demonstrates core flows.</p>
-  <div class="hstack">
-   <a class="btn" href="catalog.html">Browse Books</a>
-   <a class="btn ghost" href="checkout.html">View Cart <span class="badge cart-badge">0</span></a>
-  </div>
- </div>
- <div class="card vstack">
-  <h3>Featured</h3>
-  <div class="grid" id="feat"></div>
- </div>
-</section>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const feat = document.getElementById('feat');
-  DATA.slice(0,3).forEach(b => {
-    const el = document.createElement('div');
-    el.className='card';
-    el.innerHTML = `<div class='cover'></div>
-      <div class='vstack'>
-       <strong>${b.title}</strong>
-       <span class='muted'>${b.author}</span>
-       <span class='price'>${fmt(b.price)}</span>
-       <div class='hstack'>
-         <a class='btn' href='product.html?id=${b.id}'>View</a>
-         <button class='btn ghost' onclick='addToCart("${b.id}")'>Add to Cart</button>
-       </div>`;
-    feat.appendChild(el);
-  });
-});
-</script>
-</div>
-<footer><div class="container">
- <div class="hstack" style="justify-content:space-between;padding:18px 0">
-  <span class="muted">© 2025 Rainbow Books – Prototype</span>
-  <span class="muted">Contact: info@rainbowbooks.au</span>
- </div>
-</div></footer>
-<div class="toast"></div>
-<script src="app.js"></script>
 
-</body></html>
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Rainbow Books</title>
+<link rel="stylesheet" href="styles.css"></head><body>
+<nav class="nav"><div class="inner container"><div class="brand"><span class="logo"></span>Rainbow Books</div></div></nav>
+<div class="container"><h1>Rainbow Books Catalogue</h1><div class="grid" id="grid"></div></div>
+<footer>© 2025 Rainbow Books Prototype</footer>
+<script src="app.js"></script>
+<script>
+const g=document.getElementById('grid');
+DATA.forEach(b=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<div class='cover'></div><h3>${b.title}</h3><p>${b.author}</p><p>${fmt(b.price)}</p><button class='btn' onclick='addToCart("${b.id}")'>Add to Cart</button>`;g.appendChild(c)});
+</script></body></html>
