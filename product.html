@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="nav"><div class="container inner">
+ <div class="brand"><span class="logo"></span> Rainbow Books</div>
+ <div class="hstack">
+  <a href="index.html">Home</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="checkout.html">Checkout <span class="badge cart-badge">0</span></a>
+ </div>
+</div></nav>
+<div class="container">
+<div id="prod" class="card vstack">
+  <div class="hstack" style="gap:24px;flex-wrap:wrap">
+    <div class="cover" style="width:280px;height:360px"></div>
+    <div class="vstack" style="min-width:260px">
+      <h2 id="ptitle">Loading…</h2>
+      <div class="muted" id="pauthor"></div>
+      <div class="price" id="pprice"></div>
+      <label>Pickup store</label>
+      <select id="store">
+        <option>Collins St</option><option>Chadstone</option><option>Geelong</option>
+      </select>
+      <div class="hstack">
+        <button class="btn" id="add">Add to Cart</button>
+        <a class="btn ghost" href="checkout.html">Go to Checkout</a>
+      </div>
+    </div>
+  </div>
+  <p class="muted">Synopsis: an engaging narrative about transformation in the book industry.</p>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+const id = params.get('id') || 'b1';
+const b = DATA.find(x=>x.id===id) || DATA[0];
+document.getElementById('ptitle').textContent = b.title;
+document.getElementById('pauthor').textContent = b.author;
+document.getElementById('pprice').textContent = fmt(b.price);
+document.getElementById('add').onclick = () => addToCart(b.id);
+</script>
+</div>
+<footer><div class="container">
+ <div class="hstack" style="justify-content:space-between;padding:18px 0">
+  <span class="muted">© 2025 Rainbow Books – Prototype</span>
+  <span class="muted">Contact: info@rainbowbooks.au</span>
+ </div>
+</div></footer>
+<div class="toast"></div>
+<script src="app.js"></script>
+
+</body></html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="nav"><div class="container inner">
+ <div class="brand"><span class="logo"></span> Rainbow Books</div>
+ <div class="hstack">
+  <a href="index.html">Home</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="checkout.html">Checkout <span class="badge cart-badge">0</span></a>
+ </div>
+</div></nav>
+<div class="container">
+<div class="grid" style="grid-template-columns:2fr 1fr">
+  <div class="vstack card">
+    <h3>Customer & Delivery</h3>
+    <div class="form-row">
+      <div><label>Name</label><input id="name" placeholder="Jane Doe"></div>
+      <div><label>Email</label><input id="email" placeholder="jane@example.com"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Delivery</label><select id="delivery"><option>Click & Collect (Free)</option><option>Standard Delivery ($7.50)</option></select></div>
+      <div><label>Store</label><select id="store"><option>Collins St</option><option>Chadstone</option><option>Geelong</option></select></div>
+    </div>
+    <a class="btn" href="payment.html">Continue to Payment</a>
+  </div>
+  <div class="card vstack">
+    <h3>Cart</h3>
+    <div id="cart"></div>
+    <div class="hstack" style="justify-content:space-between"><strong>Total</strong><strong id="total">$0.00</strong></div>
+  </div>
+</div>
+<script>
+function renderCart(){
+  const wrap=document.getElementById('cart'); wrap.innerHTML='';
+  let total=0;
+  cart.forEach(it=>{
+    const b = DATA.find(x=>x.id===it.id); if(!b) return;
+    const row=document.createElement('div'); row.className='hstack'; row.style.justifyContent='space-between';
+    row.innerHTML = `<span>${b.title}</span>
+      <div class='hstack'>
+        <button class='btn ghost' onclick='changeQty("${it.id}",-1)'>-</button>
+        <span>${it.qty}</span>
+        <button class='btn ghost' onclick='changeQty("${it.id}",1)'>+</button>
+        <button class='btn' onclick='removeFromCart("${it.id}")'>Remove</button>
+      </div>`;
+    wrap.appendChild(row);
+    total += b.price * it.qty;
+  });
+  document.getElementById('total').textContent = fmt(total);
+}
+document.addEventListener('DOMContentLoaded', renderCart);
+</script>
+</div>
+<footer><div class="container">
+ <div class="hstack" style="justify-content:space-between;padding:18px 0">
+  <span class="muted">© 2025 Rainbow Books – Prototype</span>
+  <span class="muted">Contact: info@rainbowbooks.au</span>
+ </div>
+</div></footer>
+<div class="toast"></div>
+<script src="app.js"></script>
+
+</body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Confirmed</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="nav"><div class="container inner">
+ <div class="brand"><span class="logo"></span> Rainbow Books</div>
+ <div class="hstack">
+  <a href="index.html">Home</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="checkout.html">Checkout <span class="badge cart-badge">0</span></a>
+ </div>
+</div></nav>
+<div class="container">
+<div class="card vstack">
+  <h2>Order Confirmed</h2>
+  <p class="muted">Order #RB-10582 • Ready for pickup within 2 hours at Collins St. Show this code at the counter.</p>
+  <div class="hstack" style="gap:16px;align-items:center">
+    <div style="width:140px;height:140px;border-radius:14px;background:linear-gradient(135deg,#ddd,#bbb)"></div>
+    <div class="vstack">
+      <strong>Pickup Code: RBQ9-X7L2</strong>
+      <a class="btn" href="index.html">Back to Home</a>
+    </div>
+  </div>
+</div>
+<script>
+// Clear cart on confirmation
+localStorage.setItem('rb_cart','[]'); updateCartBadge();
+</script>
+</div>
+<footer><div class="container">
+ <div class="hstack" style="justify-content:space-between;padding:18px 0">
+  <span class="muted">© 2025 Rainbow Books – Prototype</span>
+  <span class="muted">Contact: info@rainbowbooks.au</span>
+ </div>
+</div></footer>
+<div class="toast"></div>
+<script src="app.js"></script>
+
+</body></html>

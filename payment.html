@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="nav"><div class="container inner">
+ <div class="brand"><span class="logo"></span> Rainbow Books</div>
+ <div class="hstack">
+  <a href="index.html">Home</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="checkout.html">Checkout <span class="badge cart-badge">0</span></a>
+ </div>
+</div></nav>
+<div class="container">
+<div class="grid" style="grid-template-columns:2fr 1fr">
+  <div class="card vstack">
+    <h3>Payment Details</h3>
+    <div class="form-row">
+      <div><label>Cardholder</label><input placeholder="Jane Doe"></div>
+      <div><label>Card Number</label><input placeholder="4242 4242 4242 4242"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Expiry</label><input placeholder="03/27"></div>
+      <div><label>CVC</label><input placeholder="123"></div>
+    </div>
+    <a class="btn secondary" href="confirmation.html">Pay Now (Prototype)</a>
+    <span class="muted">No real payment is processed.</span>
+  </div>
+  <div class="card vstack">
+    <h3>Summary</h3>
+    <div id="sum"></div>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  let total=0, wrap=document.getElementById('sum'); wrap.innerHTML='';
+  cart.forEach(it=>{
+    const b=DATA.find(x=>x.id===it.id); if(!b) return;
+    const row=document.createElement('div'); row.className='hstack'; row.style.justifyContent='space-between';
+    row.innerHTML = `<span>${b.title} × ${it.qty}</span><strong>${fmt(b.price*it.qty)}</strong>`;
+    total+=b.price*it.qty; wrap.appendChild(row);
+  });
+  const t=document.createElement('div'); t.className='hstack'; t.style.justifyContent='space-between';
+  t.innerHTML = `<strong>Total</strong><strong>${fmt(total)}</strong>`; wrap.appendChild(t);
+});
+</script>
+</div>
+<footer><div class="container">
+ <div class="hstack" style="justify-content:space-between;padding:18px 0">
+  <span class="muted">© 2025 Rainbow Books – Prototype</span>
+  <span class="muted">Contact: info@rainbowbooks.au</span>
+ </div>
+</div></footer>
+<div class="toast"></div>
+<script src="app.js"></script>
+
+</body></html>

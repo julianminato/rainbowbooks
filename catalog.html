@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalog</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="nav"><div class="container inner">
+ <div class="brand"><span class="logo"></span> Rainbow Books</div>
+ <div class="hstack">
+  <a href="index.html">Home</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="checkout.html">Checkout <span class="badge cart-badge">0</span></a>
+ </div>
+</div></nav>
+<div class="container">
+<h2>Catalog</h2>
+<p class="muted">Tap a title to view details, then add to cart or use Click & Collect at checkout.</p>
+<div class="grid" id="grid"></div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('grid');
+  DATA.forEach(b => {
+    const el = document.createElement('div'); el.className='card';
+    el.innerHTML = `<div class='cover'></div>
+      <strong>${b.title}</strong>
+      <span class='muted'>${b.author}</span>
+      <div class='hstack' style='justify-content:space-between'>
+        <span class='price'>${fmt(b.price)}</span>
+        <div class='hstack'>
+          <a class='btn' href='product.html?id=${b.id}'>View</a>
+          <button class='btn secondary' onclick='addToCart("${b.id}")'>Add</button>
+        </div>
+      </div>`;
+    grid.appendChild(el);
+  });
+});
+</script>
+</div>
+<footer><div class="container">
+ <div class="hstack" style="justify-content:space-between;padding:18px 0">
+  <span class="muted">© 2025 Rainbow Books – Prototype</span>
+  <span class="muted">Contact: info@rainbowbooks.au</span>
+ </div>
+</div></footer>
+<div class="toast"></div>
+<script src="app.js"></script>
+
+</body></html>
